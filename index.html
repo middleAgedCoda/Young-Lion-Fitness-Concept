@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Young Lion Fitness — Simbarashe Pamhare · Port Elizabeth</title>
+  <!-- Primary SEO -->
+  <meta name="description" content="Simbarashe 'Young Lion' Pamhare — personal trainer in Port Elizabeth. Transform your body and mind with custom coaching, online programs, and the Young Lion philosophy.">
+  <meta property="og:title" content="Young Lion Fitness · Simbarashe Pamhare">
+  <meta property="og:description" content="Lift and grind. Body and mind. Port Elizabeth's rising star in fitness and transformation.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=1200">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0A0A0A">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ========== YOUNG LION — PORT ELIZABETH ========== */
+    :root {
+      --void:    #0A0A0A;
+      --ink:     #1A1A1A;
+      --charcoal:#2A2A2A;
+      --stone:   #5A5A5A;
+      --smoke:   #8A8A8A;
+      --cream:   #FAF6F0;
+      --gold:    #D4AF37;
+      --gold-dim:rgba(212,175,55,0.1);
+      --gold-bdr:rgba(212,175,55,0.3);
+      --lion:    #C69214;
+      --lion-faint:rgba(198,146,20,0.05);
+      
+      --f-serif: 'Playfair Display', serif;
+      --f-sans:  'Inter', sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:var(--f-sans);
+      background:var(--void);
+      color:var(--cream);
+      overflow-x:hidden;
+      cursor:none;
+    }
+    /* Velvet texture overlay */
+    body::after {
+      content:'';
+      position:fixed; inset:0;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
+      background-size:200px; pointer-events:none; z-index:9990;
+      mix-blend-mode:overlay;
+    }
+    
+    /* ===== CURSOR (lion’s eye) ===== */
+    #cursor {
+      position:fixed; top:0; left:0;
+      pointer-events:none; z-index:10000;
+      transform:translate(-50%,-50%);
+      will-change:transform;
+    }
+    .cursor-ring {
+      width:32px; height:32px;
+      border:2px solid var(--gold);
+      border-radius:50%;
+      transition:all 0.3s;
+      box-shadow:0 0 15px var(--gold);
+    }
+    .cursor-dot {
+      position:absolute; top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      width:4px; height:4px;
+      background:var(--cream);
+      border-radius:50%;
+    }
+    body.hov .cursor-ring {
+      width:48px; height:48px;
+      background:rgba(212,175,55,0.1);
+      border-color:var(--cream);
+      box-shadow:0 0 30px var(--gold);
+    }
+    @media (pointer:coarse) { #cursor{display:none;} body{cursor:auto;} }
+    
+    /* ===== PARTICLES (roaring emojis) ===== */
+    #particle-canvas {
+      position:fixed; top:0; left:0;
+      width:100%; height:100%;
+      pointer-events:none; z-index:1;
+    }
+    
+    /* ===== LOADER ===== */
+    #loader {
+      position:fixed; inset:0;
+      background:var(--void);
+      z-index:10000;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      transition:opacity 1.2s ease;
+    }
+    #loader.out { opacity:0; pointer-events:none; }
+    .loader-lion {
+      font-size:4rem;
+      margin-bottom:16px;
+      animation:pounce 1.8s ease-in-out infinite;
+    }
+    @keyframes pounce { 0%,100%{transform:scale(1)} 50%{transform:scale(1.2) rotate(5deg)} }
+    .loader-bar {
+      width:200px; height:2px;
+      background:rgba(212,175,55,0.2);
+      overflow:hidden;
+    }
+    .loader-fill {
+      height:100%; width:0%;
+      background:var(--gold);
+      transition:width 0.1s linear;
+    }
+    
+    /* ===== NAV ===== */
+    #nav {
+      position:fixed; top:0; left:0; right:0;
+      z-index:500;
+      padding:20px 5%;
+      display:flex; align-items:center; justify-content:space-between;
+      transition:all 0.4s;
+    }
+    #nav.stk {
+      background:rgba(10,10,10,0.95);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--gold-bdr);
+      padding:12px 5%;
+    }
+    .nav-title {
+      font-family:var(--f-serif);
+      font-size:1.4rem;
+      font-weight:900;
+      color:var(--cream);
+      text-decoration:none;
+      letter-spacing:0.05em;
+    }
+    .nav-title .gold { color:var(--gold); }
+    .nav-links { display:flex; gap:32px; list-style:none; }
+    .nav-links a {
+      font-family:var(--f-sans);
+      font-size:0.8rem;
+      font-weight:500;
+      color:var(--cream);
+      text-decoration:none;
+      transition:color 0.2s;
+      position:relative;
+    }
+    .nav-links a::after {
+      content:'';
+      position:absolute; bottom:-4px; left:0;
+      width:0; height:2px;
+      background:var(--gold);
+      transition:width 0.3s;
+    }
+    .nav-links a:hover { color:var(--gold); }
+    .nav-links a:hover::after { width:100%; }
+    .nav-cta {
+      font-family:var(--f-serif);
+      font-size:0.8rem;
+      padding:8px 20px;
+      background:transparent;
+      border:2px solid var(--gold);
+      color:var(--cream);
+      text-decoration:none;
+      transition:all 0.3s;
+    }
+    .nav-cta:hover {
+      background:var(--gold);
+      color:var(--void);
+    }
+    .ham { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; }
+    .ham span { width:22px; height:2px; background:var(--cream); }
+    #mob-menu {
+      display:none; position:fixed; inset:0; top:60px;
+      background:var(--void); z-index:490;
+      padding:40px 5%; border-top:1px solid var(--gold-bdr);
+    }
+    #mob-menu.open { display:flex; flex-direction:column; }
+    #mob-menu a {
+      font-family:var(--f-serif);
+      font-size:2rem;
+      color:var(--cream);
+      text-decoration:none;
+      padding:12px 0;
+      border-bottom:1px solid var(--gold-bdr);
+    }
+    @media (max-width:900px) { .nav-links,.nav-cta{display:none;} .ham{display:flex;} }
+    
+    /* ===== HERO ===== */
+    #hero {
+      min-height:100vh;
+      position:relative;
+      display:flex;
+      align-items:center;
+      background:linear-gradient(145deg, var(--void) 0%, #1A0A0A 100%);
+      overflow:hidden;
+    }
+    .hero-lion-bg {
+      position:absolute; font-size:30vw; color:rgba(212,175,55,0.02);
+      top:50%; left:50%; transform:translate(-50%,-50%);
+      pointer-events:none;
+      font-family:var(--f-serif);
+    }
+    .hero-content {
+      position:relative; z-index:3;
+      max-width:1400px; margin:0 auto;
+      padding:0 5%;
+      width:100%;
+    }
+    .hero-kicker {
+      font-family:var(--f-serif);
+      font-style:italic;
+      font-size:1rem;
+      color:var(--gold);
+      margin-bottom:16px;
+    }
+    .hero-name {
+      font-family:var(--f-serif);
+      font-size:clamp(3rem, 10vw, 6rem);
+      font-weight:900;
+      color:var(--cream);
+      line-height:1;
+      margin-bottom:20px;
+    }
+    .hero-name .gold { color:var(--gold); }
+    .hero-name .lion { font-size:1.5em; line-height:0.8; }
+    .hero-sub {
+      font-family:var(--f-sans);
+      font-size:1.2rem;
+      font-weight:300;
+      color:var(--cream);
+      max-width:600px;
+      margin:0 0 32px;
+      line-height:1.6;
+    }
+    .hero-cta {
+      display:inline-block;
+      font-family:var(--f-serif);
+      font-style:italic;
+      font-size:0.9rem;
+      padding:14px 42px;
+      background:transparent;
+      border:2px solid var(--gold);
+      color:var(--cream);
+      text-decoration:none;
+      transition:all 0.3s;
+    }
+    .hero-cta:hover {
+      background:var(--gold);
+      color:var(--void);
+      box-shadow:0 0 30px var(--gold);
+    }
+    .hero-portrait {
+      position:absolute; right:5%; top:20%; width:300px;
+      opacity:0.5; mix-blend-mode:lighten;
+      pointer-events:none;
+      border-radius:50%;
+      overflow:hidden;
+    }
+    .hero-portrait img { width:100%; height:100%; object-fit:cover; }
+    
+    /* ===== TICKER ===== */
+    .ticker-wrap {
+      background:var(--gold);
+      padding:12px 0;
+      overflow:hidden;
+      position:relative;
+      z-index:3;
+    }
+    .ticker-track {
+      display:flex; width:max-content;
+      animation:tickerScroll 30s linear infinite;
+    }
+    .ticker-item {
+      display:flex; align-items:center; gap:20px;
+      padding:0 20px;
+      font-family:var(--f-serif);
+      font-style:italic;
+      font-size:0.9rem;
+      color:var(--void);
+      white-space:nowrap;
+    }
+    .ticker-item .sep { color:var(--void); opacity:0.5; font-size:1.2rem; }
+    @keyframes tickerScroll { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+    
+    /* ===== SECTION BASE ===== */
+    .section {
+      padding:100px 5%;
+      max-width:1400px; margin:0 auto;
+    }
+    .section-dark { background:var(--ink); }
+    .section-gold { background:rgba(212,175,55,0.02); border-top:1px solid var(--gold-bdr); border-bottom:1px solid var(--gold-bdr); }
+    .kicker {
+      font-family:var(--f-serif);
+      font-style:italic;
+      font-size:0.9rem;
+      color:var(--gold);
+      margin-bottom:12px;
+    }
+    .section-title {
+      font-family:var(--f-serif);
+      font-size:clamp(2.5rem,5vw,4rem);
+      font-weight:900;
+      color:var(--cream);
+      margin-bottom:40px;
+    }
+    .section-title .gold { color:var(--gold); }
+    
+    .rv { opacity:0; transform:translateY(20px); transition:all 0.8s; }
+    .rv.on { opacity:1; transform:none; }
+    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+    
+    /* ===== ABOUT GRID ===== */
+    .about-grid {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:60px; align-items:center;
+    }
+    .about-image img {
+      width:100%; border-radius:32px;
+      border:2px solid var(--gold);
+    }
+    .about-text p {
+      font-family:var(--f-sans);
+      font-size:0.9rem;
+      line-height:1.8;
+      margin-bottom:16px;
+    }
+    .about-text strong { color:var(--gold); }
+    .about-detail {
+      margin-top:24px;
+      border-left:3px solid var(--gold);
+      padding-left:20px;
+    }
+    .detail-item { margin-bottom:12px; }
+    .detail-label {
+      font-family:var(--f-mono);
+      font-size:0.6rem;
+      letter-spacing:0.15em;
+      color:var(--gold);
+      text-transform:uppercase;
+    }
+    .detail-value { font-size:0.9rem; }
+    
+    /* ===== PHILOSOPHY GRID ===== */
+    .philosophy-grid {
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:20px; margin-top:40px;
+    }
+    .pillar-card {
+      background:rgba(255,255,255,0.02);
+      border:1px solid var(--gold-bdr);
+      padding:40px 30px;
+      transition:all 0.3s;
+    }
+    .pillar-card:hover {
+      border-color:var(--gold);
+      transform:translateY(-4px);
+      box-shadow:0 20px 40px rgba(212,175,55,0.1);
+    }
+    .pillar-icon { font-size:2.5rem; margin-bottom:16px; }
+    .pillar-title {
+      font-family:var(--f-serif);
+      font-size:1.3rem;
+      font-weight:700;
+      color:var(--cream);
+      margin-bottom:12px;
+    }
+    .pillar-desc {
+      font-size:0.85rem;
+      color:var(--smoke);
+      line-height:1.7;
+    }
+    
+    /* ===== VIDEO CAROUSEL (Facebook Reels placeholders) ===== */
+    .carousel-wrap {
+      overflow:hidden;
+      position:relative;
+      margin:40px 0;
+    }
+    .carousel-track {
+      display:flex; gap:20px; width:max-content;
+      animation:carouselScroll 40s linear infinite;
+    }
+    .carousel-track:hover { animation-play-state:paused; }
+    .video-card {
+      flex:0 0 280px;
+      background:var(--ink);
+      border:1px solid var(--gold-bdr);
+      border-radius:16px;
+      overflow:hidden;
+      text-decoration:none;
+      color:inherit;
+      transition:all 0.3s;
+    }
+    .video-card:hover {
+      border-color:var(--gold);
+      transform:translateY(-4px) scale(1.02);
+    }
+    .video-thumb {
+      width:100%; height:160px;
+      background:var(--charcoal);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:2rem;
+    }
+    .video-meta {
+      padding:14px;
+    }
+    .video-title {
+      font-family:var(--f-serif);
+      font-size:0.9rem;
+      color:var(--cream);
+      margin-bottom:4px;
+    }
+    .video-desc {
+      font-size:0.7rem;
+      color:var(--gold);
+      font-family:var(--f-sans);
+    }
+    @keyframes carouselScroll { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+    
+    /* ===== SERVICES GRID ===== */
+    .services-grid {
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:20px; margin-top:40px;
+    }
+    .service-card {
+      background:rgba(255,255,255,0.02);
+      border:1px solid var(--gold-bdr);
+      padding:40px 30px;
+      text-align:center;
+      transition:all 0.3s;
+    }
+    .service-card:hover {
+      border-color:var(--gold);
+      transform:translateY(-4px);
+      box-shadow:0 20px 40px rgba(212,175,55,0.1);
+    }
+    .service-icon { font-size:2.5rem; margin-bottom:16px; }
+    .service-name {
+      font-family:var(--f-serif);
+      font-size:1.1rem;
+      font-weight:700;
+      color:var(--cream);
+      margin-bottom:8px;
+    }
+    .service-price {
+      font-size:1.2rem;
+      color:var(--gold);
+      font-weight:600;
+      margin-bottom:16px;
+    }
+    .service-desc {
+      font-size:0.8rem;
+      color:var(--smoke);
+      line-height:1.6;
+    }
+    
+    /* ===== TESTIMONIALS ===== */
+    .testimonials-grid {
+      display:grid; grid-template-columns:repeat(2,1fr);
+      gap:20px; margin-top:40px;
+    }
+    .test-card {
+      background:rgba(255,255,255,0.02);
+      border:1px solid var(--gold-bdr);
+      padding:32px;
+      transition:all 0.3s;
+    }
+    .test-card:hover {
+      border-color:var(--gold);
+      transform:translateY(-4px);
+    }
+    .test-quote {
+      font-family:var(--f-serif);
+      font-style:italic;
+      font-size:0.95rem;
+      color:var(--cream);
+      line-height:1.7;
+      margin-bottom:20px;
+    }
+    .test-author {
+      font-family:var(--f-sans);
+      font-size:0.8rem;
+      color:var(--gold);
+    }
+    
+    /* ===== CONTACT / CONSULT ===== */
+    #contact {
+      background:var(--ink);
+      border-top:2px solid var(--gold-bdr);
+      border-bottom:2px solid var(--gold-bdr);
+    }
+    .contact-grid {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:60px;
+    }
+    .contact-info p {
+      font-size:0.9rem;
+      line-height:1.8;
+      margin:24px 0;
+    }
+    .contact-detail {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:16px;
+    }
+    .contact-icon {
+      width:40px; height:40px;
+      border:1px solid var(--gold-bdr);
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.2rem;
+      color:var(--gold);
+    }
+    .contact-text {
+      font-size:0.9rem;
+    }
+    .contact-form {
+      background:rgba(255,255,255,0.02);
+      border:1px solid var(--gold-bdr);
+      padding:40px;
+    }
+    .form-field { margin-bottom:20px; }
+    .form-field label {
+      display:block;
+      font-family:var(--f-serif);
+      font-size:0.7rem;
+      color:var(--gold);
+      margin-bottom:6px;
+      text-transform:uppercase;
+    }
+    .form-field input, .form-field textarea {
+      width:100%; padding:12px;
+      background:rgba(0,0,0,0.5);
+      border:1px solid var(--gold-bdr);
+      color:var(--cream);
+      font-family:var(--f-sans);
+      border-radius:4px;
+    }
+    .form-field textarea { height:100px; }
+    .form-btn {
+      width:100%; padding:14px;
+      background:var(--gold);
+      border:none;
+      color:var(--void);
+      font-family:var(--f-serif);
+      font-size:0.9rem;
+      cursor:pointer;
+      transition:all 0.3s;
+    }
+    .form-btn:hover {
+      background:var(--cream);
+      box-shadow:0 0 20px var(--gold);
+    }
+    #form-message {
+      margin-top:20px;
+      font-family:var(--f-serif);
+      color:var(--gold);
+      text-align:center;
+    }
+    
+    /* ===== FOOTER ===== */
+    footer {
+      background:var(--void);
+      color:var(--smoke);
+      padding:60px 5% 30px;
+    }
+    .footer-grid {
+      max-width:1400px; margin:0 auto;
+      display:grid; grid-template-columns:2fr 1fr 1fr 1fr;
+      gap:40px;
+    }
+    .footer-name {
+      font-family:var(--f-serif);
+      font-size:1.2rem;
+      font-weight:700;
+      color:var(--gold);
+      margin-bottom:12px;
+    }
+    .footer-desc {
+      font-size:0.7rem;
+      line-height:1.7;
+    }
+    .footer-col-title {
+      font-family:var(--f-serif);
+      font-size:0.8rem;
+      font-weight:700;
+      color:var(--gold);
+      margin-bottom:16px;
+    }
+    .footer-links {
+      display:flex; flex-direction:column;
+      gap:8px;
+    }
+    .footer-links a {
+      color:var(--smoke);
+      text-decoration:none;
+      font-size:0.7rem;
+      transition:color 0.2s;
+    }
+    .footer-links a:hover { color:var(--gold); }
+    .footer-bottom {
+      max-width:1400px; margin:40px auto 0;
+      padding-top:24px;
+      border-top:1px solid var(--gold-bdr);
+      display:flex; justify-content:space-between;
+      font-size:0.5rem;
+      color:var(--smoke);
+    }
+    @media (max-width:900px) {
+      .about-grid, .contact-grid { grid-template-columns:1fr; }
+      .philosophy-grid, .services-grid { grid-template-columns:1fr 1fr; }
+      .testimonials-grid { grid-template-columns:1fr; }
+      .footer-grid { grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width:500px) {
+      .philosophy-grid, .services-grid, .footer-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div id="cursor"><div class="cursor-ring"><div class="cursor-dot"></div></div></div>
+
+<!-- Particle canvas (🦁 symbols) -->
+<canvas id="particle-canvas"></canvas>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="loader-lion">🦁</div>
+  <div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div>
+</div>
+
+<!-- Navigation -->
+<nav id="nav">
+  <a class="nav-title" href="#">YOUNG <span class="gold">LION</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">Story</a></li>
+    <li><a href="#philosophy">Philosophy</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#testimonials">Proof</a></li>
+    <li><a href="#contact">Connect</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Free Consult</a>
+  <button class="ham" id="ham-btn"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- Mobile menu -->
+<div id="mob-menu">
+  <a href="#about" onclick="closeMob()">Story</a>
+  <a href="#philosophy" onclick="closeMob()">Philosophy</a>
+  <a href="#services" onclick="closeMob()">Services</a>
+  <a href="#testimonials" onclick="closeMob()">Proof</a>
+  <a href="#contact" onclick="closeMob()">Connect</a>
+  <a href="#contact" onclick="closeMob()">Free Consult</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-lion-bg">🦁</div>
+  <div class="hero-content">
+    <div class="hero-kicker rv">Port Elizabeth · South Africa</div>
+    <h1 class="hero-name rv d1">SIMBARASHE<br><span class="gold">PAMHARE</span><br><span class="lion">🦁</span></h1>
+    <p class="hero-sub rv d2">Lift and grind. Body and mind. Young Lion Fitness is where transformation begins – no matter where you are.</p>
+    <a class="hero-cta rv d3" href="#contact">Start Your Journey →</a>
+  </div>
+  <div class="hero-portrait">
+    <img src="https://raw.githubusercontent.com/middleAgedCoda/Young-Lion-Fitness-Concept/main/Side.jpg" alt="Simbarashe Pamhare" loading="lazy">
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item">🦁 YOUNG LION FITNESS <span class="sep">✦</span></span>
+    <span class="ticker-item">PORT ELIZABETH <span class="sep">✦</span></span>
+    <span class="ticker-item">ONLINE COACHING <span class="sep">✦</span></span>
+    <span class="ticker-item">1.7K+ FACEBOOK FAMILY <span class="sep">✦</span></span>
+    <span class="ticker-item">LIFT & GRIND <span class="sep">✦</span></span>
+    <span class="ticker-item">BODY & MIND <span class="sep">✦</span></span>
+    <span class="ticker-item">🦁 YOUNG LION FITNESS <span class="sep">✦</span></span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="about-grid">
+    <div class="about-image rv-l">
+      <img src="https://raw.githubusercontent.com/middleAgedCoda/Young-Lion-Fitness-Concept/main/Hero.jpg" alt="Simbarashe training" loading="lazy">
+    </div>
+    <div class="about-text rv-r">
+      <div class="kicker">The Lion’s Story</div>
+      <h2 class="section-title">SIMBARASHE<br><span class="gold">PAMHARE</span></h2>
+      <p>Born and raised in Port Elizabeth, Simbarashe discovered his passion for fitness during his own transformation journey. What started as a personal mission to build strength and discipline quickly became a calling to help others do the same.</p>
+      <p>With a philosophy rooted in <strong>mental resilience</strong> as much as physical gains, Young Lion Fitness was born. Today he coaches clients online and in‑person, proving that the right mindset can turn any body into a fortress.</p>
+      <div class="about-detail">
+        <div class="detail-item"><span class="detail-label">Based</span><div class="detail-value">Port Elizabeth, South Africa</div></div>
+        <div class="detail-item"><span class="detail-label">Contact</span><div class="detail-value">+27 61 100 1292 · pamharesimbarashe15@gmail.com</div></div>
+        <div class="detail-item"><span class="detail-label">Social</span><div class="detail-value">@younglionfitness · @younglion_fitness · Younglionfitness</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY PILLARS -->
+<section id="philosophy" class="section-gold">
+  <div class="section">
+    <div class="kicker rv">The Young Lion Way</div>
+    <h2 class="section-title rv">TRAINING <span class="gold">PHILOSOPHY</span></h2>
+    <div class="philosophy-grid">
+      <div class="pillar-card rv d1">
+        <div class="pillar-icon">🦁</div>
+        <div class="pillar-title">Mental Fortitude</div>
+        <p class="pillar-desc">The body follows the mind. We build discipline, resilience, and the kind of mental toughness that lasts a lifetime.</p>
+      </div>
+      <div class="pillar-card rv d2">
+        <div class="pillar-icon">💪</div>
+        <div class="pillar-title">Functional Strength</div>
+        <p class="pillar-desc">Real strength that translates to everyday life. Compound movements, progressive overload, and perfect form.</p>
+      </div>
+      <div class="pillar-card rv d3">
+        <div class="pillar-icon">🧠</div>
+        <div class="pillar-title">Sustainable Nutrition</div>
+        <p class="pillar-desc">No crash diets. No gimmicks. Just practical, sustainable eating habits that fuel your goals and fit your life.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO CAROUSEL (Facebook Reels placeholders) -->
+<section class="section">
+  <div class="kicker rv">Reels & Content</div>
+  <h2 class="section-title rv">WATCH THE <span class="gold">GRIND</span></h2>
+  <div class="carousel-wrap">
+    <div class="carousel-track" id="videoTrack">
+      <!-- Facebook videos cannot be embedded directly, so we use thumbnails + links -->
+      <a class="video-card" href="https://www.facebook.com/share/r/1LWq7HLsTd/">
+        <div class="video-thumb">🔥</div>
+        <div class="video-meta">
+          <div class="video-title">Motivation: One Rep at a Time</div>
+          <div class="video-desc">Click to watch on Facebook</div>
+        </div>
+      </a>
+      <a class="video-card" href="https://www.facebook.com/share/r/14cXkGZg37s/">
+        <div class="video-thumb">🏋️</div>
+        <div class="video-meta">
+          <div class="video-title">Full Body Workout Tips</div>
+          <div class="video-desc">Click to watch on Facebook</div>
+        </div>
+      </a>
+      <a class="video-card" href="https://www.facebook.com/share/r/18RTSYZa9s/">
+        <div class="video-thumb">🥗</div>
+        <div class="video-meta">
+          <div class="video-title">Simple Meal Prep Ideas</div>
+          <div class="video-desc">Click to watch on Facebook</div>
+        </div>
+      </a>
+      <a class="video-card" href="https://www.facebook.com/share/r/18ZtGf8ddM/">
+        <div class="video-thumb">🧘</div>
+        <div class="video-meta">
+          <div class="video-title">Mindset Monday</div>
+          <div class="video-desc">Click to watch on Facebook</div>
+        </div>
+      </a>
+      <a class="video-card" href="https://www.facebook.com/share/r/1DTdXfVgjv/">
+        <div class="video-thumb">💥</div>
+        <div class="video-meta">
+          <div class="video-title">Transformation Teaser</div>
+          <div class="video-desc">Click to watch on Facebook</div>
+        </div>
+      </a>
+      <!-- Duplicates for seamless loop -->
+      <a class="video-card" href="https://www.facebook.com/younglionfitness" target="_blank">
+        <div class="video-thumb">🔥</div>
+        <div class="video-meta">
+          <div class="video-title">Motivation: One Rep at a Time</div>
+          <div class="video-desc">Click to watch on Facebook</div>
+        </div>
+      </a>
+      <a class="video-card" href="https://www.facebook.com/younglionfitness" target="_blank">
+        <div class="video-thumb">🏋️</div>
+        <div class="video-meta">
+          <div class="video-title">Full Body Workout Tips</div>
+          <div class="video-desc">Click to watch on Facebook</div>
+        </div>
+      </a>
+      <a class="video-card" href="https://www.facebook.com/younglionfitness" target="_blank">
+        <div class="video-thumb">🥗</div>
+        <div class="video-meta">
+          <div class="video-title">Simple Meal Prep Ideas</div>
+          <div class="video-desc">Click to watch on Facebook</div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <p style="text-align:center; font-size:0.8rem; color:var(--smoke);">Hover to pause carousel · Click cards to watch on Facebook</p>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section-gold">
+  <div class="section">
+    <div class="kicker rv">Work With Me</div>
+    <h2 class="section-title rv">SERVICES & <span class="gold">PRICING</span></h2>
+    <div class="services-grid">
+      <div class="service-card rv d1">
+        <div class="service-icon">💻</div>
+        <div class="service-name">Online Coaching</div>
+        <div class="service-price">R650 / month</div>
+        <div class="service-desc">Custom training & nutrition, weekly check‑ins, WhatsApp support. Anywhere in the world.</div>
+      </div>
+      <div class="service-card rv d2">
+        <div class="service-icon">🏋️</div>
+        <div class="service-name">In‑Person (PE)</div>
+        <div class="service-price">R400 / session</div>
+        <div class="service-desc">1‑on‑1 sessions in Port Elizabeth. Perfect form, max intensity, real‑time coaching.</div>
+      </div>
+      <div class="service-card rv d3">
+        <div class="service-icon">📱</div>
+        <div class="service-name">Check‑In Only</div>
+        <div class="service-price">R350 / month</div>
+        <div class="service-desc">Already have a plan? I’ll hold you accountable with daily check‑ins and weekly form reviews.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="section">
+  <div class="kicker rv">Real Results</div>
+  <h2 class="section-title rv">CLIENT <span class="gold">PROOF</span></h2>
+  <div class="testimonials-grid">
+    <div class="test-card rv d1">
+      <p class="test-quote">"Simba didn’t just train me – he taught me how to think about training. Six months later I’m still using the habits he built."</p>
+      <div class="test-author">— Thabo M., Port Elizabeth</div>
+    </div>
+    <div class="test-card rv d2">
+      <p class="test-quote">"The online coaching is incredible. I live in Cape Town but feel like I have a personal trainer right next to me. Lost 12kg and kept it off."</p>
+      <div class="test-author">— Jessica R., Cape Town</div>
+    </div>
+    <div class="test-card rv d3">
+      <p class="test-quote">"I was stuck for years. Simba’s programming and accountability finally got me past my plateaus. Stronger than I’ve ever been."</p>
+      <div class="test-author">— Michael N., Online</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / FREE CONSULT -->
+<section id="contact">
+  <div class="section">
+    <div class="contact-grid">
+      <div class="contact-info rv-l">
+        <div class="kicker">Start Here</div>
+        <h2 class="section-title">FREE <span class="gold">CONSULT</span></h2>
+        <p>Book a 20‑minute video call. We’ll discuss your goals, assess your situation, and map out exactly what it would take to get you where you want to be. No pressure – just clarity.</p>
+        <div class="contact-detail">
+          <div class="contact-icon">📞</div>
+          <div class="contact-text">+27 61 100 1292</div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">📧</div>
+          <div class="contact-text">pamharesimbarashe15@gmail.com</div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">📍</div>
+          <div class="contact-text">Port Elizabeth (in‑person) · Online worldwide</div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">🦁</div>
+          <div class="contact-text">@younglionfitness (all platforms)</div>
+        </div>
+      </div>
+      <div class="contact-form rv-r">
+        <form id="consultForm" onsubmit="event.preventDefault(); submitForm();">
+          <div class="form-field">
+            <label>Name</label>
+            <input type="text" id="name" required>
+          </div>
+          <div class="form-field">
+            <label>Email</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="form-field">
+            <label>WhatsApp / Phone</label>
+            <input type="tel" id="phone">
+          </div>
+          <div class="form-field">
+            <label>Goal (optional)</label>
+            <textarea id="message" placeholder="Tell me a bit about your goal…"></textarea>
+          </div>
+          <button type="submit" class="form-btn" id="submitBtn">Book Free Consult</button>
+          <div id="form-message"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-name">YOUNG LION FITNESS</div>
+      <p class="footer-desc">Simbarashe Pamhare · Port Elizabeth · Online worldwide · Lift and grind, body and mind.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Explore</div>
+      <div class="footer-links">
+        <a href="#about">Story</a>
+        <a href="#philosophy">Philosophy</a>
+        <a href="#services">Services</a>
+        <a href="#testimonials">Proof</a>
+        <a href="#contact">Free Consult</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Social</div>
+      <div class="footer-links">
+        <a href="https://www.facebook.com/younglionfitness" target="_blank">Facebook</a>
+        <a href="https://www.tiktok.com/@younglionfitness" target="_blank">TikTok</a>
+        <a href="https://instagram.com/younglion_fitness" target="_blank">Instagram</a>
+        <a href="#">WhatsApp</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <div class="footer-links">
+        <a href="tel:+27611001292">+27 61 100 1292</a>
+        <a href="mailto:pamharesimbarashe15@gmail.com">Email</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Young Lion Fitness · All rights reserved</span>
+    <span>🦁 Built by Kuro Digital</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  // LOADER
+  const loaderFill = document.getElementById('loaderFill');
+  const loader = document.getElementById('loader');
+  let progress = 0;
+  const interval = setInterval(() => {
+    progress += Math.random() * 15 + 5;
+    if (progress >= 100) {
+      progress = 100;
+      clearInterval(interval);
+      setTimeout(() => loader.classList.add('out'), 600);
+    }
+    loaderFill.style.width = progress + '%';
+  }, 200);
+
+  // CURSOR
+  const cursor = document.getElementById('cursor');
+  let mx = 0, my = 0, cx = 0, cy = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animateCursor() {
+    cx += (mx - cx) * 0.12;
+    cy += (my - cy) * 0.12;
+    cursor.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+  document.querySelectorAll('a, button, .pillar-card, .service-card, .test-card, .video-card').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('hov'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('hov'));
+  });
+
+  // PARTICLE CANVAS (floating lion emojis)
+  const canvas = document.getElementById('particle-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H;
+  function resizeCanvas() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  resizeCanvas(); window.addEventListener('resize', resizeCanvas);
+  const symbols = ['🦁', '🦁', '🦁', '💪', '🏋️', '🔥'];
+  const particles = [];
+  for (let i = 0; i < 30; i++) {
+    particles.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.15,
+      vy: (Math.random() - 0.5) * 0.15,
+      symbol: symbols[Math.floor(Math.random() * symbols.length)],
+      size: Math.random() * 20 + 15,
+      opacity: Math.random() * 0.1 + 0.05,
+    });
+  }
+  function drawParticles() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+      if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+      ctx.font = `${p.size}px "Inter", sans-serif`;
+      ctx.fillStyle = `rgba(212,175,55,${p.opacity})`;
+      ctx.fillText(p.symbol, p.x, p.y);
+    });
+    requestAnimationFrame(drawParticles);
+  }
+  drawParticles();
+
+  // MOBILE MENU
+  window.closeMob = () => document.getElementById('mob-menu').classList.remove('open');
+  document.getElementById('ham-btn').addEventListener('click', () => {
+    document.getElementById('mob-menu').classList.toggle('open');
+  });
+
+  // FORM SUBMIT (simulated)
+  window.submitForm = () => {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    if (!name || !email) {
+      document.getElementById('form-message').innerText = 'Please fill in name and email.';
+      return;
+    }
+    document.getElementById('form-message').innerText = 'Thanks! You’ll hear from Simba within 24 hours.';
+    document.getElementById('consultForm').reset();
+  };
+
+  // NAV STICKY
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('stk', window.scrollY > 60));
+
+  // SCROLL REVEAL
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.rv, .rv-l, .rv-r').forEach(el => observer.observe(el));
+
+  // SMOOTH SCROLL
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+
+  // PAUSE CAROUSEL ON HOVER
+  const videoTrack = document.getElementById('videoTrack');
+  if (videoTrack) {
+    videoTrack.addEventListener('mouseenter', () => videoTrack.style.animationPlayState = 'paused');
+    videoTrack.addEventListener('mouseleave', () => videoTrack.style.animationPlayState = 'running');
+    document.addEventListener('visibilitychange', () => {
+      videoTrack.style.animationPlayState = document.hidden ? 'paused' : 'running';
+    });
+  }
+})();
+</script>
+</body>
+</html>
