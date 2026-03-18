@@ -394,7 +394,60 @@
       color:var(--smoke);
       line-height:1.7;
     }
-    
+
+    /* Pillar cards with background images */
+.pillar-card {
+  position: relative;
+  background: none !important; /* remove previous background */
+  border: 1px solid var(--gold-bdr);
+  padding: 60px 44px;
+  overflow: hidden;
+  transition: all var(--t-mid);
+  cursor: default;
+  isolation: isolate;
+}
+/* Background image layer */
+.pillar-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px) brightness(0.5);
+  z-index: -2;
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+/* Dark overlay for text contrast */
+.pillar-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: -1;
+  transition: background 0.3s ease;
+}
+.pillar-card:hover::before {
+  filter: blur(2px) brightness(0.7);
+  transform: scale(1.05);
+}
+.pillar-card:hover::after {
+  background: rgba(0,0,0,0.45);
+}
+/* Keep text above everything */
+.pillar-card .pillar-title,
+.pillar-card .pillar-desc,
+.pillar-card .pillar-tags {
+  position: relative;
+  z-index: 2;
+}
+/* Remove the small image icon */
+.pillar-icon {
+  display: none;
+}
+/* Optional: add some shadow to text on hover for extra pop */
+.pillar-card:hover .pillar-title {
+  text-shadow: 0 0 10px var(--gold);
+}
     /* ===== VIDEO CAROUSEL (Facebook Reels placeholders) ===== */
     .carousel-wrap {
       overflow:hidden;
@@ -731,42 +784,27 @@
     </div>
   </div>
 </section>
-<!-- PHILOSOPHY PILLARS (with image icons) -->
+<!-- PHILOSOPHY PILLARS (with background images) -->
 <section id="philosophy" class="section-gold">
   <div class="section">
     <div class="kicker rv">The Young Lion Way</div>
     <h2 class="section-title rv">TRAINING <span class="gold">PHILOSOPHY</span></h2>
     <div class="philosophy-grid">
-      <div class="pillar-card rv d1">
-        <div class="pillar-icon">
-          <img src="https://raw.githubusercontent.com/middleAgedCoda/Coaching.png" 
-               alt="Mental Fortitude icon"
-               style="width:60px; height:auto; border-radius:50%;"
-               loading="lazy"
-               onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ctext x=\'50\' y=\'50\' font-size=\'60\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23D4AF37\'%3E🦁%3C/text%3E%3C/svg%3E';">
-        </div>
+      <!-- Card 1 – Mental Fortitude -->
+      <div class="pillar-card rv d1"
+           style="background-image: url('https://raw.githubusercontent.com/middleAgedCoda/Young-Lion-Fitness-Concept/main/Coaching.png');">
         <div class="pillar-title">Mental Fortitude</div>
         <p class="pillar-desc">The body follows the mind. We build discipline, resilience, and the kind of mental toughness that lasts a lifetime.</p>
       </div>
-      <div class="pillar-card rv d2">
-        <div class="pillar-icon">
-          <img src="https://raw.githubusercontent.com/middleAgedCoda/Young-Lion-Fitness-Concept/main/Gym.png" 
-               alt="Functional Strength icon"
-               style="width:60px; height:auto; border-radius:50%;"
-               loading="lazy"
-               onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ctext x=\'50\' y=\'50\' font-size=\'60\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23D4AF37\'%3E💪%3C/text%3E%3C/svg%3E';">
-        </div>
+      <!-- Card 2 – Functional Strength -->
+      <div class="pillar-card rv d2"
+           style="background-image: url('https://raw.githubusercontent.com/middleAgedCoda/Young-Lion-Fitness-Concept/main/Gym.png');">
         <div class="pillar-title">Functional Strength</div>
         <p class="pillar-desc">Real strength that translates to everyday life. Compound movements, progressive overload, and perfect form.</p>
       </div>
-      <div class="pillar-card rv d3">
-        <div class="pillar-icon">
-          <img src="https://raw.githubusercontent.com/middleAgedCoda/Young-Lion-Fitness-Concept/main/Buffed up.png" 
-               alt="Sustainable Nutrition icon"
-               style="width:60px; height:auto; border-radius:50%;"
-               loading="lazy"
-               onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ctext x=\'50\' y=\'50\' font-size=\'60\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23D4AF37\'%3E🧠%3C/text%3E%3C/svg%3E';">
-        </div>
+      <!-- Card 3 – Sustainable Nutrition -->
+      <div class="pillar-card rv d3"
+           style="background-image: url('https://raw.githubusercontent.com/middleAgedCoda/Young-Lion-Fitness-Concept/main/Buffed up.png');">
         <div class="pillar-title">Sustainable Nutrition</div>
         <p class="pillar-desc">No crash diets. No gimmicks. Just practical, sustainable eating habits that fuel your goals and fit your life.</p>
       </div>
