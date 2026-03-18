@@ -422,55 +422,84 @@
 .pillar-card:hover .pillar-title {
   text-shadow: 0 0 10px var(--gold);
 }
-    /* ===== VIDEO CAROUSEL (Facebook Reels placeholders) ===== */
-    .carousel-wrap {
-      overflow:hidden;
-      position:relative;
-      margin:40px 0;
-    }
-    .carousel-track {
-      display:flex; gap:20px; width:max-content;
-      animation:carouselScroll 40s linear infinite;
-    }
-    .carousel-track:hover { animation-play-state:paused; }
-    .video-card {
-      flex:0 0 280px;
-      background:var(--ink);
-      border:1px solid var(--gold-bdr);
-      border-radius:16px;
-      overflow:hidden;
-      text-decoration:none;
-      color:inherit;
-      transition:all 0.3s;
-    }
-    .video-card:hover {
-      border-color:var(--gold);
-      transform:translateY(-4px) scale(1.02);
-    }
-    .video-thumb {
-      width:100%; height:160px;
-      background:var(--charcoal);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:2rem;
-    }
-    .video-meta {
-      padding:14px;
-    }
-    .video-title {
-      font-family:var(--f-serif);
-      font-size:0.9rem;
-      color:var(--cream);
-      margin-bottom:4px;
-    }
-    .video-desc {
-      font-size:0.7rem;
-      color:var(--gold);
-      font-family:var(--f-sans);
-    }
-    @keyframes carouselScroll { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
-    
+/* ===== VIDEO CAROUSEL (Facebook Reels placeholders) ===== */
+.carousel-wrap {
+  overflow: hidden;
+  position: relative;
+  margin: 40px 0;
+}
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: carouselScroll 40s linear infinite;
+}
+.carousel-track:hover {
+  animation-play-state: paused;
+}
+.video-card {
+  flex: 0 0 280px;
+  background: var(--ink);
+  border: 1px solid var(--gold-bdr);
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s;
+  position: relative;
+}
+.video-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px) scale(1.02);
+}
+.video-media {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+}
+.video-thumb-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  z-index: 2;
+  transition: opacity 0.3s ease;
+}
+.video-thumb-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3;
+}
+.video-card:hover .video-thumb-img {
+  opacity: 1;
+}
+.video-card:hover .video-thumb-icon {
+  opacity: 0; /* hide icon when image appears */
+}
+.video-meta {
+  padding: 14px;
+}
+.video-title {
+  font-family: var(--f-serif);
+  font-size: 0.9rem;
+  color: var(--cream);
+  margin-bottom: 4px;
+}
+.video-desc {
+  font-size: 0.7rem;
+  color: var(--gold);
+  font-family: var(--f-sans);
+}
+@keyframes carouselScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
     /* ===== SERVICES GRID ===== */
     .services-grid {
       display:grid; grid-template-columns:repeat(3,1fr);
@@ -791,59 +820,93 @@
   <h2 class="section-title rv">WATCH THE <span class="gold">GRIND</span></h2>
   <div class="carousel-wrap">
     <div class="carousel-track" id="videoTrack">
-      <!-- Facebook videos cannot be embedded directly, so we use thumbnails + links -->
-      <a class="video-card" href="https://www.facebook.com/share/r/1LWq7HLsTd/">
-        <div class="video-thumb">🔥</div>
+      
+      <!-- Card 1 – Motivation (Coaching.png) -->
+      <a class="video-card" href="https://www.facebook.com/share/r/1LWq7HLsTd/" target="_blank">
+        <div class="video-media">
+          <div class="video-thumb-icon">🔥</div>
+          <div class="video-thumb-img" style="background-image: url('https://raw.githubusercontent.com/middleAgedCoda/Young-Lion-Fitness-Concept/main/Coaching.png');"></div>
+        </div>
         <div class="video-meta">
           <div class="video-title">Motivation: One Rep at a Time</div>
           <div class="video-desc">Click to watch on Facebook</div>
         </div>
       </a>
-      <a class="video-card" href="https://www.facebook.com/share/r/14cXkGZg37s/">
-        <div class="video-thumb">🏋️</div>
+
+      <!-- Card 2 – Workout Tips (Gym.png) -->
+      <a class="video-card" href="https://www.facebook.com/share/r/14cXkGZg37s/" target="_blank">
+        <div class="video-media">
+          <div class="video-thumb-icon">🏋️</div>
+          <div class="video-thumb-img" style="background-image: url('https://raw.githubusercontent.com/middleAgedCoda/Young-Lion-Fitness-Concept/main/Gym.png');"></div>
+        </div>
         <div class="video-meta">
           <div class="video-title">Full Body Workout Tips</div>
           <div class="video-desc">Click to watch on Facebook</div>
         </div>
       </a>
-      <a class="video-card" href="https://www.facebook.com/share/r/18RTSYZa9s/">
-        <div class="video-thumb">🥗</div>
+
+      <!-- Card 3 – Meal Prep (Buffed up.png) -->
+      <a class="video-card" href="https://www.facebook.com/share/r/18RTSYZa9s/" target="_blank">
+        <div class="video-media">
+          <div class="video-thumb-icon">🥗</div>
+          <div class="video-thumb-img" style="background-image: url('https://raw.githubusercontent.com/middleAgedCoda/Young-Lion-Fitness-Concept/main/Buffed up.png');"></div>
+        </div>
         <div class="video-meta">
           <div class="video-title">Simple Meal Prep Ideas</div>
           <div class="video-desc">Click to watch on Facebook</div>
         </div>
       </a>
-      <a class="video-card" href="https://www.facebook.com/share/r/18ZtGf8ddM/">
-        <div class="video-thumb">🧘</div>
+
+      <!-- Card 4 – Mindset (use Coaching.png again) -->
+      <a class="video-card" href="https://www.facebook.com/share/r/18ZtGf8ddM/" target="_blank">
+        <div class="video-media">
+          <div class="video-thumb-icon">🧘</div>
+          <div class="video-thumb-img" style="background-image: url('https://raw.githubusercontent.com/middleAgedCoda/Young-Lion-Fitness-Concept/main/Coaching.png');"></div>
+        </div>
         <div class="video-meta">
           <div class="video-title">Mindset Monday</div>
           <div class="video-desc">Click to watch on Facebook</div>
         </div>
       </a>
-      <a class="video-card" href="https://www.facebook.com/share/r/1DTdXfVgjv/">
-        <div class="video-thumb">💥</div>
+
+      <!-- Card 5 – Transformation (Gym.png) -->
+      <a class="video-card" href="https://www.facebook.com/share/r/1DTdXfVgjv/" target="_blank">
+        <div class="video-media">
+          <div class="video-thumb-icon">💥</div>
+          <div class="video-thumb-img" style="background-image: url('https://raw.githubusercontent.com/middleAgedCoda/Young-Lion-Fitness-Concept/main/Gym.png');"></div>
+        </div>
         <div class="video-meta">
           <div class="video-title">Transformation Teaser</div>
           <div class="video-desc">Click to watch on Facebook</div>
         </div>
       </a>
-      <!-- Duplicates for seamless loop -->
-      <a class="video-card" href="https://www.facebook.com/younglionfitness" target="_blank">
-        <div class="video-thumb">🔥</div>
+
+      <!-- Duplicates for seamless loop (using same image assignments) -->
+      <a class="video-card" href="https://www.facebook.com/share/r/1LWq7HLsTd/" target="_blank">
+        <div class="video-media">
+          <div class="video-thumb-icon">🔥</div>
+          <div class="video-thumb-img" style="background-image: url('https://raw.githubusercontent.com/middleAgedCoda/Young-Lion-Fitness-Concept/main/Coaching.png');"></div>
+        </div>
         <div class="video-meta">
           <div class="video-title">Motivation: One Rep at a Time</div>
           <div class="video-desc">Click to watch on Facebook</div>
         </div>
       </a>
-      <a class="video-card" href="https://www.facebook.com/younglionfitness" target="_blank">
-        <div class="video-thumb">🏋️</div>
+      <a class="video-card" href="https://www.facebook.com/share/r/14cXkGZg37s/" target="_blank">
+        <div class="video-media">
+          <div class="video-thumb-icon">🏋️</div>
+          <div class="video-thumb-img" style="background-image: url('https://raw.githubusercontent.com/middleAgedCoda/Young-Lion-Fitness-Concept/main/Gym.png');"></div>
+        </div>
         <div class="video-meta">
           <div class="video-title">Full Body Workout Tips</div>
           <div class="video-desc">Click to watch on Facebook</div>
         </div>
       </a>
-      <a class="video-card" href="https://www.facebook.com/younglionfitness" target="_blank">
-        <div class="video-thumb">🥗</div>
+      <a class="video-card" href="https://www.facebook.com/share/r/18RTSYZa9s/" target="_blank">
+        <div class="video-media">
+          <div class="video-thumb-icon">🥗</div>
+          <div class="video-thumb-img" style="background-image: url('https://raw.githubusercontent.com/middleAgedCoda/Young-Lion-Fitness-Concept/main/Buffed up.png');"></div>
+        </div>
         <div class="video-meta">
           <div class="video-title">Simple Meal Prep Ideas</div>
           <div class="video-desc">Click to watch on Facebook</div>
@@ -853,7 +916,6 @@
   </div>
   <p style="text-align:center; font-size:0.8rem; color:var(--smoke);">Hover to pause carousel · Click cards to watch on Facebook</p>
 </section>
-
 <!-- SERVICES -->
 <section id="services" class="section-gold">
   <div class="section">
