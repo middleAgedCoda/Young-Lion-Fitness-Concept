@@ -370,54 +370,30 @@
       display:grid; grid-template-columns:repeat(3,1fr);
       gap:20px; margin-top:40px;
     }
-    .pillar-card {
-      background:rgba(255,255,255,0.02);
-      border:1px solid var(--gold-bdr);
-      padding:40px 30px;
-      transition:all 0.3s;
-    }
-    .pillar-card:hover {
-      border-color:var(--gold);
-      transform:translateY(-4px);
-      box-shadow:0 20px 40px rgba(212,175,55,0.1);
-    }
-    .pillar-icon { font-size:2.5rem; margin-bottom:16px; }
-    .pillar-title {
-      font-family:var(--f-serif);
-      font-size:1.3rem;
-      font-weight:700;
-      color:var(--cream);
-      margin-bottom:12px;
-    }
-    .pillar-desc {
-      font-size:0.85rem;
-      color:var(--smoke);
-      line-height:1.7;
-    }
-
-    /* Pillar cards with background images */
+/* Pillar cards with background images – UPDATED */
 .pillar-card {
   position: relative;
-  background: none !important; /* remove previous background */
+  background: none !important;
   border: 1px solid var(--gold-bdr);
   padding: 60px 44px;
   overflow: hidden;
-  transition: all var(--t-mid);
+  transition: all 0.3s ease;
   cursor: default;
   isolation: isolate;
 }
-/* Background image layer */
+/* Background image layer – uses CSS variable from inline style */
 .pillar-card::before {
   content: '';
   position: absolute;
   inset: 0;
+  background-image: var(--bg-img);  /* set per card via style="--bg-img: url(...)" */
   background-size: cover;
   background-position: center;
   filter: blur(8px) brightness(0.5);
   z-index: -2;
   transition: filter 0.4s ease, transform 0.4s ease;
 }
-/* Dark overlay for text contrast */
+/* Dark overlay */
 .pillar-card::after {
   content: '';
   position: absolute;
@@ -433,18 +409,16 @@
 .pillar-card:hover::after {
   background: rgba(0,0,0,0.45);
 }
-/* Keep text above everything */
-.pillar-card .pillar-title,
-.pillar-card .pillar-desc,
-.pillar-card .pillar-tags {
+/* Keep text above */
+.pillar-title,
+.pillar-desc {
   position: relative;
   z-index: 2;
 }
-/* Remove the small image icon */
+/* Hide the old icon */
 .pillar-icon {
   display: none;
 }
-/* Optional: add some shadow to text on hover for extra pop */
 .pillar-card:hover .pillar-title {
   text-shadow: 0 0 10px var(--gold);
 }
